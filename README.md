@@ -1,6 +1,10 @@
 # Starter project
 
-This is an empty project that is scaffolded out when you run `npx @temporalio/create@latest ./myfolder` and choose the `empty` option.
+To scaffold a new application from this template run:
+
+```bash
+npx degit https://github.com/sketchmonk-dev/data-exporter-starter.git <YOUR_APP_NAME>
+```
 
 - Add your Activity Definitions to `src/activities.ts`.
 - Add your Workflow Definitions to `src/workflows.ts`.
