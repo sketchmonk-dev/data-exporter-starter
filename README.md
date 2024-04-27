@@ -8,6 +8,14 @@ This is an empty project that is scaffolded out when you run `npx @temporalio/cr
 - Modify the `src/client.ts` file and replace `YOUR_WORKFLOW` with the name of your Workflow.
 - Add Activity and Workflow tests to the `src/mocha` directory in files with the extension `.test.ts`.
 
+# Utilities
+
+- **utils/mongodb**: Utilities for mongodb connection
+- **utils/csv-writer**: A utility class for writing records to CSV
+- **utils/mailer**: Utilities for sending mail with attachments
+- **utils/storage**: Utilities to work with AWS S3 storage
+- **utils/notification**: Utilities for sending notifications using the Novu platform.
+
 ## Running the code
 
 Install dependencies with `npm install`.
