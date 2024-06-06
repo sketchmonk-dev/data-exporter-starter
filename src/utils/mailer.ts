@@ -1,3 +1,4 @@
+import * as aws from "@aws-sdk/client-ses";
 import { createTransport, type Transporter } from "nodemailer";
 import { getConfig } from "../config";
 import { getObjectSignedUrl } from "./storage";
@@ -8,7 +9,14 @@ import { getObjectSignedUrl } from "./storage";
  */
 export function createMailerTransport() {
     const config = getConfig();
-    return createTransport(config.mailer);
+    if (config.mailer.type === 'ses') {
+        const ses = new aws.SES(config.mailer.options);
+        return createTransport({
+            SES: { ses, aws },
+        })
+    } else {
+        return createTransport(config.mailer.options);
+    }
 }
 
 type Attachment = NonNullable<Parameters<Transporter['sendMail']>[0]['attachments']>[0];
@@ -53,7 +61,7 @@ export async function sendMail({
 }: ISendMailParams) {
     const transporter = createMailerTransport();
     await transporter.sendMail({
-        from: getConfig().mailer.auth.user,
+        from: getConfig().mailer.from,
         to,
         cc,
         bcc,
